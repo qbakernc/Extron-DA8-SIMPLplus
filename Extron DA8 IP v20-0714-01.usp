@@ -1,0 +1,220 @@
+/*
+Dealer Name: Aisle Group
+System Name: Extron DA8 TCP/IP
+System Number: v20-0714-01
+Programmer: Quentin Baker
+Comments:
+*/
+
+/*******************************************************************************************
+  Compiler Directives
+  (Uncomment and declare compiler directives as needed)
+*******************************************************************************************/
+#SYMBOL_NAME "Extron DA8 TCP/IP v20-0714-01"
+#DEFAULT_VOLATILE
+#ENABLE_STACK_CHECKING
+#ENABLE_TRACE
+#HELP_Begin
+The connection with the TCP/IP client will only be open long enough to send the command. 
+Once the command is sent, the connection is closed. This way we do not have the 
+connection open the entire time. This simpl+ module will store the data that needs 
+to be sent. Once the TCP/IP client status changes to 2d for connected, the simpl+ 
+module will send the data signal to its designated Client and then close the connection
+after 100ms.
+#Help_End
+
+/*******************************************************************************************
+  DIGITAL, ANALOG and SERIAL INPUTS and OUTPUTS
+  (Uncomment and declare inputs and outputs as needed)
+*******************************************************************************************/
+
+//Takes in the status of the Tcp/Ip client.
+ANALOG_INPUT tcpStatus1;
+ANALOG_INPUT tcpStatus2;
+ANALOG_INPUT tcpStatus3;
+ANALOG_INPUT tcpStatus4;
+ANALOG_INPUT tcpStatus5;
+ANALOG_INPUT tcpStatus6;
+ANALOG_INPUT tcpStatus7;
+ANALOG_INPUT tcpStatus8;
+
+//Takes in the the data that needs to be transmitted through the Tcp/Ip client.
+STRING_INPUT txIn1$[16];
+STRING_INPUT txIn2$[16]; 
+STRING_INPUT txIn3$[16]; 
+STRING_INPUT txIn4$[16]; 
+STRING_INPUT txIn5$[16]; 
+STRING_INPUT txIn6$[16];
+STRING_INPUT txIn7$[16];
+STRING_INPUT txIn8$[16];
+
+//Establishes the connection between the Tcp/Ip client and the device.
+DIGITAL_OUTPUT tcpConnect1;
+DIGITAL_OUTPUT tcpConnect2;
+DIGITAL_OUTPUT tcpConnect3;
+DIGITAL_OUTPUT tcpConnect4;
+DIGITAL_OUTPUT tcpConnect5;
+DIGITAL_OUTPUT tcpConnect6;
+DIGITAL_OUTPUT tcpConnect7;
+DIGITAL_OUTPUT tcpConnect8;
+
+//Transmits the stored data through the Tcp/Ip client.
+STRING_OUTPUT txOut1$; 
+STRING_OUTPUT txOut2$; 
+STRING_OUTPUT txOut3$; 
+STRING_OUTPUT txOut4$; 
+STRING_OUTPUT txOut5$;
+STRING_OUTPUT txOut6$; 
+STRING_OUTPUT txOut7$; 
+STRING_OUTPUT txOut8$;
+ 
+/*******************************************************************************************
+  Global Variables
+  (Uncomment and declare global variables as needed)
+  Note:  Be sure to initialize all declared STRING variables as needed
+         For example, in Function Main: myString = "";
+*******************************************************************************************/
+  
+//Holds the data that needs to be transmitted through the Tcp/Ip client.
+STRING temp1[16];
+STRING temp2[16];
+STRING temp3[16];
+STRING temp4[16];
+STRING temp5[16];
+STRING temp6[16];
+STRING temp7[16];
+STRING temp8[16];
+
+/*******************************************************************************************
+  Event Handlers
+  (Uncomment and declare additional event handlers as needed)
+*******************************************************************************************/
+CHANGE txIn1$
+{
+	temp1 = txIn1$; // Stores input data into the temp1 variable for later transmission.
+	tcpConnect1 = 1; // Establishes the connection between the Tcp/Ip client and the device.
+}
+
+CHANGE txIn2$
+{
+	temp2 = txIn2$; // Stores input data into the temp2 variable for later transmission.
+	tcpConnect2 = 1;// Establishes the connection between the Tcp/Ip client and the device.
+}
+ 
+CHANGE txIn3$
+{
+	temp3 = txIn3$; // Stores input data into the temp3 variable for later transmission.
+	tcpConnect3 = 1;// Establishes the connection between the Tcp/Ip client and the device.
+}
+ 
+CHANGE txIn4$
+{
+	temp4 = txIn4$; // Stores input data into the temp4 variable for later transmission.
+	tcpConnect4 = 1;// Establishes the connection between the Tcp/Ip client and the device.
+}
+ 
+CHANGE txIn5$
+{
+	temp5 = txIn5$; // Stores input data into the temp5 variable for later transmission.
+	tcpConnect5 = 1;// Establishes the connection between the Tcp/Ip client and the device.
+}
+
+CHANGE txIn6$
+{
+	temp6 = txIn6$; // Stores input data into the temp6 variable for later transmission.
+	tcpConnect6 = 1;// Establishes the connection between the Tcp/Ip client and the device.
+}
+
+CHANGE txIn7$
+{
+	temp7 = txIn7$; // Stores input data into the temp7 variable for later transmission.
+	tcpConnect7 = 1;// Establishes the connection between the Tcp/Ip client and the device.
+}
+
+CHANGE txIn8$
+{
+	temp8 = txIn8$; // Stores input data into the temp8 variable for later transmission.
+	tcpConnect8 = 1;// Establishes the connection between the Tcp/Ip client and the device.
+}
+
+
+CHANGE tcpStatus1
+{
+	if (tcpStatus1 = 2) {
+		txOut1$ = temp1; // Transmits the stored data from temp1 if the status is connected. (connected = 2d)
+		Delay(100);
+		tcpConnect1 = 0; // Terminates the connection after 100ms.
+	}
+}
+
+CHANGE tcpStatus2
+{
+	if (tcpStatus2 = 2) {
+		txOut2$ = temp2; // Transmits the stored data from temp2 if the status is connected. (connected = 2d)
+		Delay(100);
+		tcpConnect2 = 0; // Terminates the connection after 100ms.
+	}
+}
+
+
+CHANGE tcpStatus3
+{
+	if (tcpStatus3 = 2) {
+		txOut3$ = temp3; // Transmits the stored data from temp3 if the status is connected. (connected = 2d)
+		Delay(100);
+		tcpConnect3 = 0; // Terminates the connection after 100ms.
+	}
+}
+
+CHANGE tcpStatus4
+{
+	if (tcpStatus4 = 2) {
+		txOut4$ = temp4; // Transmits the stored data from temp4 if the status is connected. (connected = 2d)
+		Delay(100);
+		tcpConnect4 = 0; // Terminates the connection after 100ms.
+	}
+}
+
+CHANGE tcpStatus5
+{
+	if (tcpStatus5 = 2) {
+		txOut5$ = temp5; // Transmits the stored data from temp5 if the status is connected. (connected = 2d)
+		Delay(100);
+		tcpConnect5 = 0; // Terminates the connection after 100ms.
+	}
+}
+
+CHANGE tcpStatus6
+{
+	if (tcpStatus6 = 2) {
+		txOut6$ = temp6; // Transmits the stored data from temp6 if the status is connected. (connected = 2d)
+		Delay(100);
+		tcpConnect6 = 0; // Terminates the connection after 100ms.
+	}
+}
+
+CHANGE tcpStatus7
+{
+	if (tcpStatus7 = 2) {
+		txOut7$ = temp7; // Transmits the stored data from temp7 if the status is connected. (connected = 2d)
+		Delay(100);
+		tcpConnect7 = 0; // Terminates the connection after 100ms.
+	}
+}
+
+CHANGE tcpStatus8
+{
+	if (tcpStatus8 = 2) {
+		txOut8$ = temp8; // Transmits the stored data from temp8 if the status is connected. (connected = 2d)
+		Delay(100);
+		tcpConnect8 = 0; // Terminates the connection after 100ms.
+	}
+}
+/*******************************************************************************************
+  Main()
+  Uncomment and place one-time startup code here
+  (This code will get called when the system starts up)
+*******************************************************************************************/
+Function Main()
+{
+}

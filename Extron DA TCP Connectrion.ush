@@ -1,0 +1,115 @@
+[BEGIN]
+  Version=1
+[END]
+[BEGIN]
+  ObjTp=FSgntr
+  Sgntr=UserSPlus
+  RelVrs=1
+  IntStrVrs=1
+  SPlusVrs=4.04.01
+  CrossCplrVrs=1.3
+[END]
+[BEGIN]
+  ObjTp=Hd
+[END]
+[BEGIN]
+  ObjTp=Symbol
+  Exclusions=1,19,20,21,88,89,167,168,179,213,214,215,216,217,225,226,248,249,266,267,310,718,756,854,
+  Exclusions_CDS=5
+  Inclusions_CDS=6
+  Name=Extron DA TCP Connectrion
+  SmplCName=Extron DA TCP Connectrion.usp
+  Code=1
+  SysRev5=3.083
+  SMWRev=2.02.05
+  InputList2Cue1=Status_1_In
+  InputList2SigType1=Analog
+  InputList2Cue2=Status_2_In
+  InputList2SigType2=Analog
+  InputList2Cue3=Status_3_In
+  InputList2SigType3=Analog
+  InputList2Cue4=Status_4_In
+  InputList2SigType4=Analog
+  InputList2Cue5=Status_5_In
+  InputList2SigType5=Analog
+  InputList2Cue6=Status_6_In
+  InputList2SigType6=Analog
+  InputList2Cue7=Status_7_In
+  InputList2SigType7=Analog
+  InputList2Cue8=Status_8_In
+  InputList2SigType8=Analog
+  InputList2Cue9=Display_1_In
+  InputList2SigType9=Serial
+  InputList2Cue10=Display_2_In
+  InputList2SigType10=Serial
+  InputList2Cue11=Display_3_In
+  InputList2SigType11=Serial
+  InputList2Cue12=Display_4_In
+  InputList2SigType12=Serial
+  InputList2Cue13=Display_5_In
+  InputList2SigType13=Serial
+  InputList2Cue14=Display_6_In
+  InputList2SigType14=Serial
+  InputList2Cue15=Display_7_In
+  InputList2SigType15=Serial
+  InputList2Cue16=Display_8_In
+  InputList2SigType16=Serial
+  OutputList2Cue1=Display_1_Out
+  OutputList2SigType1=Serial
+  OutputList2Cue2=Display_2_Out
+  OutputList2SigType2=Serial
+  OutputList2Cue3=Display_3_Out
+  OutputList2SigType3=Serial
+  OutputList2Cue4=Display_4_Out
+  OutputList2SigType4=Serial
+  OutputList2Cue5=Display_5_Out
+  OutputList2SigType5=Serial
+  OutputList2Cue6=Display_6_Out
+  OutputList2SigType6=Serial
+  OutputList2Cue7=Display_7_Out
+  OutputList2SigType7=Serial
+  OutputList2Cue8=Display_8_Out
+  OutputList2SigType8=Serial
+  ParamCue1=[Reference Name]
+  MinVariableInputs=0
+  MaxVariableInputs=0
+  MinVariableInputsList2=16
+  MaxVariableInputsList2=16
+  MinVariableOutputs=0
+  MaxVariableOutputs=0
+  MinVariableOutputsList2=8
+  MaxVariableOutputsList2=8
+  MinVariableParams=0
+  MaxVariableParams=0
+  Expand=expand_separately
+  Expand2=expand_separately
+  ProgramTree=Logic
+  SymbolTree=32
+  Hint=
+  PdfHelp=
+  HelpID= 
+  Render=4
+  Smpl-C=16
+  CompilerCode=-48
+  CompilerParamCode=27
+  CompilerParamCode5=14
+  NumFixedParams=1
+  Pp1=1
+  MPp=1
+  NVStorage=10
+  ParamSigType1=String
+  SmplCInputCue1=o#
+  SmplCOutputCue1=i#
+  SmplCInputList2Cue1=an#
+  SmplCOutputList2Cue1=ai#
+  SPlus2CompiledName=S2_Extron_DA_TCP_Connectrion
+  SymJam=NonExclusive
+  FileName=Extron DA TCP Connectrion.ush
+  SIMPLPlusModuleEncoding=0
+[END]
+[BEGIN]
+  ObjTp=Dp
+  H=1
+  Tp=1
+  NoS=False
+[END]

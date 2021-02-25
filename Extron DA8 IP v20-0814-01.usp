@@ -1,0 +1,459 @@
+/*
+Dealer Name: Aisle Group
+System Name: Extron DA8 TCP/IP
+System Number: v20-0714-01
+Programmer: Quentin Baker
+Comments:
+*/
+
+/*******************************************************************************************
+  Compiler Directives
+*******************************************************************************************/
+#SYMBOL_NAME "Extron DA8 TCP/IP v20-0814-01"
+#CATEGORY "46" "Extron Devices"
+#DEFAULT_VOLATILE
+#ENABLE_STACK_CHECKING
+#ENABLE_TRACE
+#HELP_Begin
+This Simpl+ module has 8 direct socket connections and is intended to be used with the Extron DA8 digital amplifier. 
+There is a input parameter for its IP address and eight Port Numbers. The connection with the device will be made 
+once serial data is sent into one of the string inputs of this simpl+ module. The connection will only be open long 
+enough to receive data from the device. Once the command is sent and data is received from the device, the connection
+is closed. This way we do not have the connection open the entire time. 
+
+This simpl+ module will store the data that needs to be sent. Once the Socket status changes to 2d for connected, the simpl+ 
+module will send the data signal to its designated Client and then close the connection after data has been received from the
+device. This module has optional delimiter parameters for each String Input. This module will gather all of the received data 
+including the delimiter just in case the data comes in chunks and pieces. If you choose not to use the gather feature of this
+module, enter in the string value "null" for the delimiters.
+#Help_End
+
+/*******************************************************************************************
+  DIGITAL, ANALOG and SERIAL INPUTS and OUTPUTS
+*******************************************************************************************/
+STRING_INPUT TX$[8,8][255]; // String Input Array. Takes in the the data that needs to be transmitted.
+
+STRING_OUTPUT RX$[8,8]; // String Output Array. Transmits the stored data through the Tcp/Ip client.
+
+ /*******************************************************************************************
+  SOCKETS
+*******************************************************************************************/
+TCP_CLIENT Client_1[1024];
+TCP_CLIENT Client_2[1024];
+TCP_CLIENT Client_3[1024];
+TCP_CLIENT Client_4[1024];
+TCP_CLIENT Client_5[1024];
+TCP_CLIENT Client_6[1024];
+TCP_CLIENT Client_7[1024];
+TCP_CLIENT Client_8[1024];
+
+/*******************************************************************************************
+  Parameters
+*******************************************************************************************/
+STRING_PARAMETER Delimiter[8,8][8], // Delimiters for the option Gather
+                 IpAddress[40];     // Device IP Address
+
+INTEGER_PARAMETER Port[8,8];        // Device Port Number
+
+/*******************************************************************************************
+  Parameter Properties
+*******************************************************************************************/
+#BEGIN_PARAMETER_PROPERTIES Delimiter
+   propValidUnits = unitString;
+   propDefaultValue = "null";
+#END_PARAMETER_PROPERTIES
+
+#BEGIN_PARAMETER_PROPERTIES Port
+   propValidUnits = unitDecimal;
+   propDefaultValue = 0d;
+#END_PARAMETER_PROPERTIES
+
+/*******************************************************************************************
+  Global Variables
+*******************************************************************************************/
+STRING Temp$[8][255]; // Temp variable Array to hold our data.
+
+/*******************************************************************************************
+  Input Change Event Handler
+*******************************************************************************************/
+CHANGE TX$
+{
+  Integer i; // Inexer for input selection
+  Integer err; // Holds Sockect Connection Status.
+
+  i = GetLastModifiedArrayIndex(); // Gets the index of which input received data.
+  Temp$[i] = TX$[i];               // Stores the Data in a temp variable.
+
+  Switch(i)
+  {
+    Case (1):
+    {
+      // Connects Client_1 if input 1 Received data.
+      err = SocketConnectClient(Client_1, IpAddress, Port[1], 0); 
+    }
+    Case (2):
+    {
+      // Connects Client_2 if input 2 Received data.
+      err = SocketConnectClient(Client_2, IpAddress, Port[2], 0); 
+    }
+    Case (3):
+    {
+      // Connects Client_3 if input 3 Received data.
+      err = SocketConnectClient(Client_3, IpAddress, Port[3], 0); 
+    }
+    Case (4):
+    {
+      // Connects Client_4 if input 4 Received data.
+      err = SocketConnectClient(Client_4, IpAddress, Port[4], 0); 
+    }
+    Case (5):
+    {
+      // Connects Client_5 if input 5 Received data.
+      err = SocketConnectClient(Client_5, IpAddress, Port[5], 0); 
+    }
+    Case (6):
+    {
+      // Connects Client_6 if input 6 Received data.
+      err = SocketConnectClient(Client_6, IpAddress, Port[6], 0); 
+    }
+    Case (7):
+    {
+      // Connects Client_7 if input 7 Received data. 
+      err = SocketConnectClient(Client_7, IpAddress, Port[7], 0);
+    }
+    Case (8):
+    {
+      // Connects Client_8 if input 8 Received data.
+      err = SocketConnectClient(Client_8, IpAddress, Port[8], 0);
+    }
+  }
+
+  If(err < 0) {
+    Trace("Socket %d connect failed with error %d", i, err);      // Prints error if connection can not be made.
+  }
+}
+
+/*******************************************************************************************
+  Socket Connect Event Handlers
+*******************************************************************************************/
+SOCKETCONNECT Client_1
+{
+  // Connects Client_1
+  if(Client_1.SocketStatus = 2) {
+    SocketSend(Client_1, Temp$[1]);  // Sends the data out Client_1
+  }
+}
+
+SOCKETCONNECT Client_2
+{
+  // Connects Client_2
+  if(Client_2.SocketStatus = 2) {
+    SocketSend(Client_2, Temp$[2]); // Sends the data out Client_2
+  }
+}
+
+SOCKETCONNECT Client_3
+{
+  // Connects Client_3
+  if(Client_3.SocketStatus = 2) {
+    SocketSend(Client_3, Temp$[3]); // Sends the data out Client_3
+  }
+}
+
+SOCKETCONNECT Client_4
+{
+  // Connects Client_4
+  if(Client_4.SocketStatus = 2) {
+    SocketSend(Client_4, Temp$[4]); // Sends the data out Client_4
+  }
+}
+
+SOCKETCONNECT Client_5
+{
+  // Connects Client_5
+  if(Client_5.SocketStatus = 2) {
+    SocketSend(Client_5, Temp$[5]); // Sends the data out Client_5
+  }
+}
+
+SOCKETCONNECT Client_6
+{
+  // Connects Client_6
+  if(Client_6.SocketStatus = 2) {
+    SocketSend(Client_6, Temp$[6]); // Sends the data out Client_6
+  }
+}
+
+SOCKETCONNECT Client_7
+{
+  // Connects Client_7
+  if(Client_7.SocketStatus = 2) {
+    SocketSend(Client_7, Temp$[7]); // Sendsthe data out Client_7
+  }
+}
+
+SOCKETCONNECT Client_8
+{
+  // Connects Client_8
+  if(Client_8.SocketStatus = 2) {
+    SocketSend(Client_8, Temp$[8]); // Sends the data out Client_8
+  }
+}
+
+/*******************************************************************************************
+  Socket Receive Event Handlers
+*******************************************************************************************/
+SOCKETRECEIVE Client_1 
+{
+  // Temp Variable to store received data
+  String Temp$[100];
+
+  // If buffer has data, receive the data
+  if(Len(Client_1.SocketRxBuf) > 0)
+  {
+    // If delimeter is not equal to null use the gather
+    if(Delimiter[1] <> "null")
+    {
+      // Gathers and stores the data in Temp$. The Delimiter is included.
+      Temp$ = Gather(Delimiter[1], Client_1.SocketRxBuf);
+
+      // Copys the data from Temp$ to Rx$
+      RX$[1] = Temp$;
+    }
+    Else
+    {
+      // Do not use the gather. Copies the data straight to RX$
+      RX$[1] = Client_1.SocketRxBuf;
+    }
+
+    // Clear the Buffer.
+    ClearBuffer(Client_1.SocketRxBuf);  
+  }
+
+  // Disonnects Client_1
+  SocketDisconnectClient(Client_1);
+}
+
+SOCKETRECEIVE Client_2
+{
+  // Temp Variable to store received data
+  String Temp$[100];
+
+  // If buffer has data, receive the data
+  if(Len(Client_2.SocketRxBuf) > 0)
+  {
+    // If delimeter is not equal to null use the gather
+    if(Delimiter[2] <> "null")
+    {
+      // Gathers and stores the data in Temp$. The Delimiter is included.
+      Temp$ = Gather(Delimiter[2], Client_2.SocketRxBuf);
+
+      // Copys the data from Temp$ to Rx$
+      RX$[2] = Temp$;
+    }
+    Else
+    {
+      // Do not use the gather. Copies the data straight to RX$
+      RX$[2] = Client_2.SocketRxBuf;
+    }
+
+    // Clear the Buffer.
+    ClearBuffer(Client_2.SocketRxBuf);  
+  }
+
+  // Disonnects Client_2
+  SocketDisconnectClient(Client_2);
+}
+
+SOCKETRECEIVE Client_3
+{
+  // Temp Variable to store received data
+  String Temp$[100];
+
+  // If buffer has data, receive the data
+  if(Len(Client_3.SocketRxBuf) > 0)
+  {
+    // If delimeter is not equal to null use the gather
+    if(Delimiter[3] <> "null")
+    {
+      // Gathers and stores the data in Temp$. The Delimiter is included.
+      Temp$ = Gather(Delimiter[3], Client_3.SocketRxBuf);
+
+      // Copys the data from Temp$ to Rx$
+      RX$[3] = Temp$;
+    }
+    Else
+    {
+      // Do not use the gather. Copies the data straight to RX$
+      RX$[3] = Client_3.SocketRxBuf;
+    }
+
+    // Clear the Buffer.
+    ClearBuffer(Client_3.SocketRxBuf);  
+  }
+
+  // Disonnects Client_3
+  SocketDisconnectClient(Client_3);
+}
+
+SOCKETRECEIVE Client_4
+{
+  // Temp Variable to store received data
+  String Temp$[100];
+
+  // If buffer has data, receive the data
+  if(Len(Client_4.SocketRxBuf) > 0)
+  {
+    // If delimeter is not equal to null use the gather
+    if(Delimiter[4] <> "null")
+    {
+      // Gathers and stores the data in Temp$. The Delimiter is included.
+      Temp$ = Gather(Delimiter[4], Client_4.SocketRxBuf);
+
+      // Copys the data from Temp$ to Rx$
+      RX$[4] = Temp$;
+    }
+    Else
+    {
+      // Do not use the gather. Copies the data straight to RX$
+      RX$[4] = Client_4.SocketRxBuf;
+    }
+
+    // Clear the Buffer.
+    ClearBuffer(Client_4.SocketRxBuf);  
+  }
+
+  // Disonnects Client_4
+  SocketDisconnectClient(Client_4);
+}
+
+SOCKETRECEIVE Client_5
+{
+  // Temp Variable to store received data
+  String Temp$[100];
+
+  // If buffer has data, receive the data
+  if(Len(Client_5.SocketRxBuf) > 0)
+  {
+    // If delimeter is not equal to null use the gather
+    if(Delimiter[5] <> "null")
+    {
+      // Gathers and stores the data in Temp$. The Delimiter is included.
+      Temp$ = Gather(Delimiter[5], Client_5.SocketRxBuf);
+
+      // Copys the data from Temp$ to Rx$
+      RX$[5] = Temp$;
+    }
+    Else
+    {
+      // Do not use the gather. Copies the data straight to RX$
+      RX$[5] = Client_5.SocketRxBuf;
+    }
+
+    // Clear the Buffer.
+    ClearBuffer(Client_5.SocketRxBuf);  
+  }
+
+  // Disonnects Client_5
+  SocketDisconnectClient(Client_5);
+}
+
+SOCKETRECEIVE Client_6
+{
+  // Temp Variable to store received data
+  String Temp$[100];
+
+  // If buffer has data, receive the data
+  if(Len(Client_6.SocketRxBuf) > 0)
+  {
+    // If delimeter is not equal to null use the gather
+    if(Delimiter[6] <> "null")
+    {
+      // Gathers and stores the data in Temp$. The Delimiter is included.
+      Temp$ = Gather(Delimiter[6], Client_6.SocketRxBuf);
+
+      // Copys the data from Temp$ to Rx$
+      RX$[6] = Temp$;
+    }
+    Else
+    {
+      // Do not use the gather. Copies the data straight to RX$
+      RX$[6] = Client_6.SocketRxBuf;
+    }
+
+    // Clear the Buffer.
+    ClearBuffer(Client_6.SocketRxBuf);  
+  }
+
+  // Disonnects Client_6
+  SocketDisconnectClient(Client_6);
+}
+
+SOCKETRECEIVE Client_7
+{
+  // Temp Variable to store received data
+  String Temp$[100];
+
+  // If buffer has data, receive the data
+  if(Len(Client_7.SocketRxBuf) > 0)
+  {
+    // If delimeter is not equal to null use the gather
+    if(Delimiter[7] <> "null")
+    {
+      // Gathers and stores the data in Temp$. The Delimiter is included.
+      Temp$ = Gather(Delimiter[7], Client_7.SocketRxBuf);
+
+      // Copys the data from Temp$ to Rx$
+      RX$[7] = Temp$;
+    }
+    Else
+    {
+      // Do not use the gather. Copies the data straight to RX$
+      RX$[7] = Client_7.SocketRxBuf;
+    }
+
+    // Clear the Buffer.
+    ClearBuffer(Client_7.SocketRxBuf);  
+  }
+
+  // Disonnects Client_7
+  SocketDisconnectClient(Client_7);
+}
+
+SOCKETRECEIVE Client_8
+{
+  // Temp Variable to store received data
+  String Temp$[100];
+
+  // If buffer has data, receive the data
+  if(Len(Client_8.SocketRxBuf) > 0)
+  {
+    // If delimeter is not equal to null use the gather
+    if(Delimiter[8] <> "null")
+    {
+      // Gathers and stores the data in Temp$. The Delimiter is included.
+      Temp$ = Gather(Delimiter[8], Client_8.SocketRxBuf);
+
+      // Copys the data from Temp$ to Rx$
+      RX$[8] = Temp$;
+    }
+    Else
+    {
+      // Do not use the gather. Copies the data straight to RX$
+      RX$[8] = Client_8.SocketRxBuf;
+    }
+
+    // Clear the Buffer.
+    ClearBuffer(Client_8.SocketRxBuf);  
+  }
+
+  // Disonnects Client_8
+  SocketDisconnectClient(Client_8);
+}
+
+/*******************************************************************************************
+  Main()
+*******************************************************************************************/
+Function Main()
+{
+}

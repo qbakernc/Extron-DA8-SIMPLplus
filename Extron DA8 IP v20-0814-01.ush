@@ -1,0 +1,324 @@
+[BEGIN]
+  Version=1
+[END]
+[BEGIN]
+  ObjTp=FSgntr
+  Sgntr=UserSPlus
+  RelVrs=1
+  IntStrVrs=1
+  SPlusVrs=4.05.01
+  CrossCplrVrs=1.3
+[END]
+[BEGIN]
+  ObjTp=Hd
+  Cmn1=This Simpl+ module has 8 direct socket connections and is intended||1
+  Cmn2=to be used with the Extron DA8 digital amplifier. \\There is a input||1
+  Cmn3=parameter for its IP address and eight Port Numbers. The connection||1
+  Cmn4=with the device will be made \\once serial data is sent into one||1
+  Cmn5=of the string inputs of this simpl+ module. The connection will||1
+  Cmn6=only be open long \\enough to receive data from the device. Once||1
+  Cmn7=the command is sent and data is received from the device, the connection\\
+  Cmn8=is closed. This way we do not have the connection open the entire||1
+  Cmn9=time. \\\\This simpl+ module will store the data that needs to be||1
+  Cmn10=sent. Once the Socket status changes to 2d for connected, the simpl+||1
+  Cmn11=\\module will send the data signal to its designated Client and||1
+  Cmn12=then close the connection after data has been received from the\\
+  Cmn13=device. This module has optional delimiter parameters for each String||1
+  Cmn14=Input. This module will gather all of the received data \\including||1
+  Cmn15=the delimiter just in case the data comes in chunks and pieces.||1
+  Cmn16=If you choose not to use the gather feature of this\\module, enter||1
+  Cmn17=in the string value "null" for the delimiters.
+[END]
+[BEGIN]
+  ObjTp=Symbol
+  Exclusions=1,19,20,21,88,89,167,168,179,213,214,215,216,217,225,226,248,249,266,267,310,362,378,380,405,407,408,409,478,522,537,554,586,590,611,624,718,756,767,830,841,842,854,883,955,1032,1062,1079,1128,1129,1134,1140,1157,1158,1195,1199,1220,1221,1222,1223,1299,1348,1349,1439,1472,1473,1499,1746,1803,1975,2229,2354,2514,2523,2532,2706,2707,3235,3236,3427,3454,3567,3568,3601,3602,3708,3902,3903,3912,3918,3925,3926,4206,4207,6114,6136,6423,
+  Exclusions_CDS=5,7
+  Inclusions_CDS=6
+  Name=Extron DA8 TCP/IP v20-0814-01
+  SmplCName=Extron DA8 IP v20-0814-01.usp
+  Code=1
+  SysRev5=4.000
+  SMWRev=2.02.05
+  InputList2Cue1=TX$[#]
+  InputList2SigType1=Serial
+  OutputList2Cue1=RX$[#]
+  OutputList2SigType1=Serial
+  ParamCue1=[Reference Name]
+  ParamCue2=Delimiter[1]
+  ParamSigType2=String
+  ParamCue3=Delimiter[2]
+  ParamSigType3=String
+  ParamCue4=Delimiter[3]
+  ParamSigType4=String
+  ParamCue5=Delimiter[4]
+  ParamSigType5=String
+  ParamCue6=Delimiter[5]
+  ParamSigType6=String
+  ParamCue7=Delimiter[6]
+  ParamSigType7=String
+  ParamCue8=Delimiter[7]
+  ParamSigType8=String
+  ParamCue9=Delimiter[8]
+  ParamSigType9=String
+  ParamCue10=IpAddress
+  ParamSigType10=String
+  ParamCue11=Port[1]
+  ParamSigType11=Constant
+  ParamCue12=Port[2]
+  ParamSigType12=Constant
+  ParamCue13=Port[3]
+  ParamSigType13=Constant
+  ParamCue14=Port[4]
+  ParamSigType14=Constant
+  ParamCue15=Port[5]
+  ParamSigType15=Constant
+  ParamCue16=Port[6]
+  ParamSigType16=Constant
+  ParamCue17=Port[7]
+  ParamSigType17=Constant
+  ParamCue18=Port[8]
+  ParamSigType18=Constant
+  MinVariableInputs=0
+  MaxVariableInputs=0
+  MinVariableInputsList2=8
+  MaxVariableInputsList2=8
+  MinVariableOutputs=0
+  MaxVariableOutputs=0
+  MinVariableOutputsList2=8
+  MaxVariableOutputsList2=8
+  MinVariableParams=17
+  MaxVariableParams=17
+  Expand=expand_separately
+  Expand2=expand_separately
+  ProgramTree=Logic
+  SymbolTree=46
+  UserSymTreeName=Extron Devices
+  Hint=
+  PdfHelp=
+  HelpID= 
+  Render=4
+  Smpl-C=16
+  CompilerCode=-48
+  CompilerParamCode=27
+  CompilerParamCode5=14
+  NumFixedParams=1
+  Pp1=1
+  Pp2=2
+  Pp3=3
+  Pp4=4
+  Pp5=5
+  Pp6=6
+  Pp7=7
+  Pp8=8
+  Pp9=9
+  Pp10=10
+  Pp11=11
+  Pp12=12
+  Pp13=13
+  Pp14=14
+  Pp15=15
+  Pp16=16
+  Pp17=17
+  Pp18=18
+  MPp=18
+  NVStorage=10
+  ParamSigType1=String
+  SmplCInputCue1=o#
+  SmplCOutputCue1=i#
+  SmplCInputList2Cue1=an#
+  SmplCOutputList2Cue1=ai#
+  SPlus2CompiledName=S2_Extron_DA8_IP_v20_0814_01
+  SymJam=NonExclusive
+  FileName=Extron DA8 IP v20-0814-01.ush
+  SIMPLPlusModuleEncoding=0
+[END]
+[BEGIN]
+  ObjTp=Dp
+  H=1
+  Tp=1
+  NoS=False
+[END]
+[BEGIN]
+  ObjTp=Dp
+  H=2
+  Tp=1
+  HD=True
+  DV=null
+  NoS=False
+  VVS=0
+[END]
+[BEGIN]
+  ObjTp=Dp
+  H=3
+  Tp=1
+  HD=True
+  DV=null
+  NoS=False
+  VVS=0
+[END]
+[BEGIN]
+  ObjTp=Dp
+  H=4
+  Tp=1
+  HD=True
+  DV=null
+  NoS=False
+  VVS=0
+[END]
+[BEGIN]
+  ObjTp=Dp
+  H=5
+  Tp=1
+  HD=True
+  DV=null
+  NoS=False
+  VVS=0
+[END]
+[BEGIN]
+  ObjTp=Dp
+  H=6
+  Tp=1
+  HD=True
+  DV=null
+  NoS=False
+  VVS=0
+[END]
+[BEGIN]
+  ObjTp=Dp
+  H=7
+  Tp=1
+  HD=True
+  DV=null
+  NoS=False
+  VVS=0
+[END]
+[BEGIN]
+  ObjTp=Dp
+  H=8
+  Tp=1
+  HD=True
+  DV=null
+  NoS=False
+  VVS=0
+[END]
+[BEGIN]
+  ObjTp=Dp
+  H=9
+  Tp=1
+  HD=True
+  DV=null
+  NoS=False
+  VVS=0
+[END]
+[BEGIN]
+  ObjTp=Dp
+  H=10
+  Tp=1
+  HD=False
+  NoS=False
+  VVS=0
+[END]
+[BEGIN]
+  ObjTp=Dp
+  H=11
+  Tp=1
+  HD=True
+  DV=0d
+  Sgn=0
+  Lng=False
+  NF=1
+  NoS=True
+  DNF=1
+  VVS=0
+[END]
+[BEGIN]
+  ObjTp=Dp
+  H=12
+  Tp=1
+  HD=True
+  DV=0d
+  Sgn=0
+  Lng=False
+  NF=1
+  NoS=True
+  DNF=1
+  VVS=0
+[END]
+[BEGIN]
+  ObjTp=Dp
+  H=13
+  Tp=1
+  HD=True
+  DV=0d
+  Sgn=0
+  Lng=False
+  NF=1
+  NoS=True
+  DNF=1
+  VVS=0
+[END]
+[BEGIN]
+  ObjTp=Dp
+  H=14
+  Tp=1
+  HD=True
+  DV=0d
+  Sgn=0
+  Lng=False
+  NF=1
+  NoS=True
+  DNF=1
+  VVS=0
+[END]
+[BEGIN]
+  ObjTp=Dp
+  H=15
+  Tp=1
+  HD=True
+  DV=0d
+  Sgn=0
+  Lng=False
+  NF=1
+  NoS=True
+  DNF=1
+  VVS=0
+[END]
+[BEGIN]
+  ObjTp=Dp
+  H=16
+  Tp=1
+  HD=True
+  DV=0d
+  Sgn=0
+  Lng=False
+  NF=1
+  NoS=True
+  DNF=1
+  VVS=0
+[END]
+[BEGIN]
+  ObjTp=Dp
+  H=17
+  Tp=1
+  HD=True
+  DV=0d
+  Sgn=0
+  Lng=False
+  NF=1
+  NoS=True
+  DNF=1
+  VVS=0
+[END]
+[BEGIN]
+  ObjTp=Dp
+  H=18
+  Tp=1
+  HD=True
+  DV=0d
+  Sgn=0
+  Lng=False
+  NF=1
+  NoS=True
+  DNF=1
+  VVS=0
+[END]

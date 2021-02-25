@@ -1,0 +1,393 @@
+/*******************************************************************************************
+  SIMPL+ Module Information
+  (Fill in comments below)
+*******************************************************************************************/
+/*
+Dealer Name: Aisle Group
+System Name: Extron DA TCP Connection
+System Number:
+Programmer: Quentin Baker
+Comments:
+*/
+
+/*******************************************************************************************
+  Compiler Directives
+  (Uncomment and declare compiler directives as needed)
+*******************************************************************************************/
+// #ENABLE_DYNAMIC
+// #SYMBOL_NAME ""
+// #HINT ""
+// #DEFINE_CONSTANT
+// #CATEGORY "" 
+// #PRINT_TO_TRACE
+// #DIGITAL_EXPAND 
+// #ANALOG_SERIAL_EXPAND 
+// #OUTPUT_SHIFT 
+// #HELP_PDF_FILE ""
+#DEFAULT_VOLATILE
+#ENABLE_STACK_CHECKING
+#ENABLE_TRACE
+// #ENCODING_ASCII
+// #ENCODING_UTF16
+// #ENCODING_INHERIT_FROM_PARENT
+// #ENCODING_INHERIT_FROM_PROGRAM
+/*
+#HELP_BEGIN
+   (add additional lines of help lines)
+#HELP_END
+*/
+
+/*******************************************************************************************
+  Include Libraries
+  (Uncomment and include additional libraries as needed)
+*******************************************************************************************/
+// #CRESTRON_LIBRARY ""
+// #USER_LIBRARY ""
+
+/*******************************************************************************************
+  DIGITAL, ANALOG and SERIAL INPUTS and OUTPUTS
+  (Uncomment and declare inputs and outputs as needed)
+*******************************************************************************************/
+// DIGITAL_INPUT 
+   ANALOG_INPUT Status_1_In;
+   ANALOG_INPUT Status_2_In;
+   ANALOG_INPUT Status_3_In;
+   ANALOG_INPUT Status_4_In;
+   ANALOG_INPUT Status_5_In;
+   ANALOG_INPUT Status_6_In;
+   ANALOG_INPUT Status_7_In;
+   ANALOG_INPUT Status_8_In;
+
+   STRING_INPUT Display_1_In[16];
+   STRING_INPUT Display_2_In[16]; 
+   STRING_INPUT Display_3_In[16]; 
+   STRING_INPUT Display_4_In[16]; 
+   STRING_INPUT Display_5_In[16]; 
+   STRING_INPUT Display_6_In[16];
+   STRING_INPUT Display_7_In[16];
+   STRING_INPUT Display_8_In[16];
+// BUFFER_INPUT 
+
+// DIGITAL_OUTPUT
+// ANALOG_OUTPUT 
+   STRING_OUTPUT Display_1_Out; 
+   STRING_OUTPUT Display_2_Out; 
+   STRING_OUTPUT Display_3_Out; 
+   STRING_OUTPUT Display_4_Out; 
+   STRING_OUTPUT Display_5_Out;
+   STRING_OUTPUT Display_6_Out; 
+   STRING_OUTPUT Display_7_Out; 
+   STRING_OUTPUT Display_8_Out;
+ 
+
+
+/*******************************************************************************************
+  SOCKETS
+  (Uncomment and define socket definitions as needed)
+*******************************************************************************************/
+// TCP_CLIENT
+// TCP_SERVER
+// UDP_SOCKET
+
+/*******************************************************************************************
+  Parameters
+  (Uncomment and declare parameters as needed)
+*******************************************************************************************/
+// INTEGER_PARAMETER
+// SIGNED_INTEGER_PARAMETER
+// LONG_INTEGER_PARAMETER
+// SIGNED_LONG_INTEGER_PARAMETER
+// STRING_PARAMETER
+
+/*******************************************************************************************
+  Parameter Properties
+  (Uncomment and declare parameter properties as needed)
+*******************************************************************************************/
+/*
+#BEGIN_PARAMETER_PROPERTIES parameter_variable, parameter_variable, ...
+   // propValidUnits = // unitString or unitDecimal|unitHex|unitPercent|unitCharacter|unitTime|unitTicks;
+   // propDefaultUnit = // unitString, unitDecimal, unitHex, unitPercent, unitCharacter, unitTime or unitTicks;
+   // propBounds = lower_bound , upper_bound;
+   // propDefaultValue = ;  // or, propDefaultValue = "";
+   // propList = // { "value" , "label" } , { "value" , "label" } , ... ;
+   // propShortDescription = "status_bar_hint_text";
+   // #BEGIN_PROP_FULL_DESCRIPTION  line_1...  line_2...  line_n  #END_PROP_FULL_DESCRIPTION
+   // #BEGIN_PROP_NOTES line_1...  line_2...  line_n  #END_PROP_NOTES
+#END_PARAMETER_PROPERTIES
+*/
+
+/*******************************************************************************************
+  Structure Definitions
+  (Uncomment and define structure definitions as needed)
+  Note:  Be sure to initialize all declared STRING variables as needed
+         For example, in Function Main: struct.myString = "";
+*******************************************************************************************/
+/*
+STRUCTURE MyStruct1
+{
+};
+
+MyStruct1 struct;
+*/
+
+/*******************************************************************************************
+  Global Variables
+  (Uncomment and declare global variables as needed)
+  Note:  Be sure to initialize all declared STRING variables as needed
+         For example, in Function Main: myString = "";
+*******************************************************************************************/
+   INTEGER Status_1;
+   INTEGER Status_2;
+   INTEGER Status_3;
+   INTEGER Status_4;
+   INTEGER Status_5;
+   INTEGER Status_6;
+   INTEGER Status_7;
+   INTEGER Status_8;
+
+// LONG_INTEGER
+// SIGNED_INTEGER
+// SIGNED_LONG_INTEGER
+   STRING Display_1[16];
+   STRING Display_2[16];
+   STRING Display_3[16];
+   STRING Display_4[16];
+   STRING Display_5[16];
+   STRING Display_6[16];
+   STRING Display_7[16];
+   STRING Display_8[16];
+
+/*******************************************************************************************
+  Functions
+  (Add any additional functions here)
+  Note:  Functions must be physically placed before the location in
+         the code that calls them.
+*******************************************************************************************/
+/*
+Function MyFunction1()
+{
+    // TODO:  Add local variable declarations here
+
+    // TODO:  Add code here
+}
+*/
+
+/*
+Integer_Function MyIntFunction1()
+{
+    // TODO:  Add local variable declarations here
+
+    // TODO:  Add code here
+
+    Return (0);
+}
+*/
+
+/*
+String_Function MyStrFunction1()
+{
+    // TODO:  Add local variable declarations here
+
+    // TODO:  Add code here
+
+    Return ("");
+}
+*/
+
+/*******************************************************************************************
+  Event Handlers
+  (Uncomment and declare additional event handlers as needed)
+*******************************************************************************************/
+/*
+PUSH input
+{
+    // TODO:  Add code here
+}
+*/
+
+/*
+RELEASE input
+{
+    // TODO:  Add code here
+}
+*/
+
+
+CHANGE Status_1_In
+{
+    Status_1 = Status_1_In;
+	
+	if (Status_1 = 2)
+		{
+			Display_1_Out = Display_1;
+		}
+}
+
+CHANGE Status_2_In
+{
+    Status_2 = Status_2_In;
+	
+	if (Status_2 = 2)
+		{
+			Display_2_Out = Display_2;
+		}
+}
+
+
+CHANGE Status_3_In
+{
+    Status_3 = Status_3_In;
+	
+	if (Status_3 = 2)
+		{
+			Display_3_Out = Display_3;
+		}
+}
+
+CHANGE Status_4_In
+{
+    Status_4 = Status_4_In;
+	
+	if (Status_4 = 2)
+		{
+			Display_4_Out = Display_4;
+		}
+}
+
+CHANGE Status_5_In
+{
+    Status_5 = Status_5_In;
+	
+	if (Status_5 = 2)
+		{
+			Display_5_Out = Display_5;
+		}
+}
+
+CHANGE Status_6_In
+{
+    Status_6 = Status_6_In;
+	
+	if (Status_6 = 2)
+		{
+			Display_6_Out = Display_6;
+		}
+}
+
+CHANGE Status_7_In
+{
+    Status_7 = Status_7_In;
+	
+	if (Status_7 = 2)
+		{
+			Display_7_Out = Display_7;
+		}
+}
+
+CHANGE Status_8_In
+{
+    Status_8 = Status_8_In;
+	
+	if (Status_8 = 2)
+		{
+			Display_8_Out = Display_8;
+		}
+}
+
+
+CHANGE Display_1_In
+{
+ 	Display_1 = Display_1_In;
+}
+
+CHANGE Display_2_In
+{
+ 	Display_2 = Display_2_In;
+}
+
+CHANGE Display_3_In
+{
+ 	Display_3 = Display_3_In;
+}
+
+CHANGE Display_4_In
+{
+ 	Display_4 = Display_4_In;
+}
+
+CHANGE Display_5_In
+{
+ 	Display_5 = Display_5_In;
+}
+
+CHANGE Display_6_In
+{
+ 	Display_6 = Display_6_In;
+}
+
+CHANGE Display_7_In
+{
+ 	Display_7 = Display_7_In;
+}
+
+CHANGE Display_8_In
+{
+ 	Display_8 = Display_8_In;
+}
+
+
+/*
+EVENT
+{
+    // TODO:  Add code here
+}
+*/
+
+/*
+SOCKETCONNECT
+{
+    // TODO:  Add code here
+}
+*/
+
+/*
+SOCKETDISCONNECT
+{
+    // TODO:  Add code here
+}
+*/
+
+/*
+SOCKETRECEIVE
+{
+    // TODO:  Add code here
+}
+*/
+
+/*
+SOCKETSTATUS
+{
+    // TODO:  Add code here
+}
+*/
+
+/*******************************************************************************************
+  Main()
+  Uncomment and place one-time startup code here
+  (This code will get called when the system starts up)
+*******************************************************************************************/
+/*
+Function Main()
+{
+    // TODO:  Add code here
+    // Initialize declared global and local variables/arrays as needed.
+
+    // WaitForInitializationComplete();
+    // If you are reading any Input or Output variables, uncomment
+    //   the WaitForInitializationComplete statement above and read
+    //   them afterwards.  Input/Output variables will not have
+    //   their correct values set until after the logic processor
+    //   runs and propagates the values to them.
+}
+*/
+
